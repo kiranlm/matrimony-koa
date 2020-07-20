@@ -1,0 +1,31 @@
+{
+  "name": "matrimony-api",
+  "version": "1.0.0",
+  "description": "A small matrimony kind of application for myself",
+  "main": "app.js",
+  "dependencies": {
+    "koa": "^2.5.3",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "superagent": "^4.0.0-beta.5"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "supertest": "^3.3.0"
+  },
+  "scripts": {
+    "test": "jest --watchAll",
+    "dev": "nodemon --inspect app.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiranlm/matrimony-koa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kiranlm/matrimony-koa/issues"
+  },
+  "homepage": "https://github.com/kiranlm/matrimony-koa#readme"
+}
