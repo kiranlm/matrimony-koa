@@ -3,6 +3,7 @@ const logger = require('koa-logger');
 const Router = require('koa-router');
 const mount = require('koa-mount');
 const graphqlHTTP = require('koa-graphql');
+const cors = require('@koa/cors');
 const schema = require('./graphql/schema');
 const initDB = require('./config/database');
 const app = new Koa();
@@ -11,6 +12,8 @@ const app = new Koa();
 app.use(logger());
 
 initDB();
+
+app.use(cors());
 
 // error handling
 app.use(async (ctx, next) => {
@@ -50,5 +53,5 @@ app.use(matchRouter.routes());
 app.use(matchRouter.allowedMethods());
 
 // tell the server to listen to events on a specific port
-const server = app.listen(5000);
+const server = app.listen(process.env.PORT || 5000);
 module.exports = server;
