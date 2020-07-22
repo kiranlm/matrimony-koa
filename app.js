@@ -1,10 +1,16 @@
 const Koa = require('koa');
 const logger = require('koa-logger');
 const Router = require('koa-router');
+const mount = require('koa-mount');
+const graphqlHTTP = require('koa-graphql');
+const schema = require('./graphql/schema');
+const initDB = require('./config/database');
 const app = new Koa();
 
 // log all events to the terminal
 app.use(logger());
+
+initDB();
 
 // error handling
 app.use(async (ctx, next) => {
@@ -16,6 +22,16 @@ app.use(async (ctx, next) => {
     ctx.app.emit('error', err, ctx);
   }
 });
+
+app.use(
+  mount(
+    '/graphql',
+    graphqlHTTP({
+      schema: schema,
+      graphiql: true,
+    })
+  )
+);
 
 // instantiate our new Router
 const router = new Router();
